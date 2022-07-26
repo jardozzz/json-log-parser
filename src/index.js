@@ -70,7 +70,7 @@ const storage=document.querySelector(".market_container")
 function drawOdds(array){
   const storage=document.querySelector(".market_container")
   storage.innerHTML=""
-  array.arr.forEach(e=>{
+  array.arr.forEach((e,n)=>{
 
     const temp=document.querySelector("#container").content.cloneNode(true)
 if(n!=0 && array.arr[n].date.slice(-2)-array.arr[n-1].date.slice(-2)!=5 ){
