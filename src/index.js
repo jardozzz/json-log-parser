@@ -9,7 +9,7 @@ let bookiesID = {
   1:"pinnacle",
   6: "fonbet",
   110: "ggbet",
-  17: "parimantch"
+  17: "parimatch"
 };
 function parse(q){
 let h=q.match(regstop).reduce((a,b)=>a+b)
@@ -73,7 +73,11 @@ function drawOdds(array){
   array.arr.forEach(e=>{
 
     const temp=document.querySelector("#container").content.cloneNode(true)
-
+if(n!=0 && array.arr[n].date.slice(-2)-array.arr[n-1].date.slice(-2)!=5 ){
+  let noWL=document.createElement("span")
+  noWL.innerText=`NO WL FLAG from ${array.arr[n-1].date} to ${array.arr[n].date}`
+  storage.appendChild(noWL)
+}
 temp.querySelector(".date").innerHTML=e.date
 e.bookies.forEach(e=>{
   const bookmaker=document.createElement("span")
