@@ -1,0 +1,29 @@
+#json{
+display:inline-block;
+  width:400px;
+  height:400px;
+  margin:0 auto;
+}
+.element{
+  display:flex;
+  gap:10px;
+  margin:20px;
+  font-size: 20px;
+  border:2px solid black;
+}
+.date{
+  padding-top:20px;
+  justify-content: center;
+}
+.odds{
+
+  display:flex;
+  gap:10px;
+}
+.odds>span{padding:3px;
+  text-align: center;
+  border:2px solid green;
+}
+.odds>.redborder{
+  border:3px solid red
+}
