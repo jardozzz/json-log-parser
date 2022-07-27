@@ -48,25 +48,23 @@ function parse(q) {
         if (e.selectionId === 11 || e.selectionId === 1)
           elem.win1 = e.odds[i].odd;
         if (e.selectionId === 12 || e.selectionId === 2) {
-          console.log(123);
           elem.win2 = e.odds[i].odd;
         }
         if (e.selectionId === 3) elem.draw = e.odds[i].odd;
         if (e.selectionId === 34) {
           elem.variant=e.variant
           elem.win1=e.odds[i].odd
-          elem.win2= element[1].BooksInfos[0].attached.find((q)=>q.selectionId===35 && q.variant===`${-e.variant}`).odds[i].odd
-          console.log(-e.variant)
+          const backhb=element[1].BooksInfos[0].attached.find((q)=>q.selectionId===35 && q.variant===`${-e.variant}`)
+          elem.win2= backhb?backhb.odds[i].odd:""
         }
                if (e.odds[i].operation === 'SUSPENDED') elem.status = 'SUSPENDED';
         arr[index].date = element[0];
       }
     });
   });
-  console.log(arrHolder);
+
   return arrHolder;
 }
-console.log(undefined===undefined)
 const goButton = document.querySelector('.parser');
 const str = document.getElementById('json');
 goButton.addEventListener('click', () => {
