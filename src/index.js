@@ -86,11 +86,11 @@ function parse(q) {
               (h) => h.variant === `${-Number(e.variant)}` && h.hb === 'HB1'
             )
           ) {
-            elem.variants.push({ variant: `${Number(e.variant)}`, hb: 'HB2' });
+            elem.variants.push({ variant: `${-Number(e.variant)}`, hb: 'HB2' });
           }
           if (
             elem.variants.find(
-              (h) => h.variant === `${Number(e.variant)}` && h.hb === 'HB2'
+              (h) => h.variant === `${-Number(e.variant)}` && h.hb === 'HB2'
             ) === undefined
           ) {
             elem.variants.find(
@@ -98,11 +98,25 @@ function parse(q) {
             ).win2 = e.odds[i].odd;
           } else
             elem.variants.find(
-              (h) => h.variant === `${Number(e.variant)}` && h.hb === 'HB2'
+              (h) => h.variant === `${-Number(e.variant)}` && h.hb === 'HB2'
             ).win2 = e.odds[i].odd;
+        }
+        if (e.selectionId === 14 || e.selectionId === 36) {
+          if (!elem.variants) elem.variants = [];
+          if(!elem.variants.some((h) => h.variant === `${Number(e.variant)}`)) elem.variants.push({variant: `${Number(e.variant)}`})
+          elem.variants.find((h) => h.variant === `${Number(e.variant)}`).win1=e.odds[i].odd
+        }
+        if (e.selectionId === 15 || e.selectionId === 37) {
+          if (!elem.variants) elem.variants = [];
+          if(!elem.variants.some((h) => h.variant === `${Number(e.variant)}`)) elem.variants.push({variant: `${Number(e.variant)}`})
+          elem.variants.find((h) => h.variant === `${Number(e.variant)}`).win2=e.odds[i].odd
         }
         if (e.odds[i].operation === 'SUSPENDED') elem.status = 'SUSPENDED';
         arr[index].date = element[0];
+        let scoreKeep=element[1].BooksInfos[0].scores.find(booker=>booker.bookmakerId===`${i}`).scores.find(qwer=>qwer.type==="MATCH")
+      
+        elem.currentScore=scoreKeep.home+" "+scoreKeep.away
+               
       }
     });
   });
@@ -132,7 +146,7 @@ function drawOdds(array) {
     const temp = document.querySelector('#container').content.cloneNode(true);
     temp.querySelector('.date').innerHTML = e.date;
     e.bookies.forEach((e) => {
-      let innertexT = `${e.book}\n`;
+      let innertexT = `Book: ${e.book}\n Match score:${e.currentScore}\n`;
       if (e.variants) {
         e.variants.forEach((hb) => {
           innertexT += `${hb.variant} ${hb.win1} ${hb.win2}\n`;
