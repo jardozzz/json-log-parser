@@ -12,6 +12,17 @@ let bookiesID = {
   27: 'Olimp',
   79: 'Sportsbook',
   19: 'Unibet',
+  2: 'Betcity',
+  3: 'SBObet',
+  5:'188Bet',
+  8:'Baltbet',
+  10:'Bet365',
+  11:'Betfair',
+  12: 'Sportingbet',
+  13: 'WilliamHill',
+  21:'1xbet',
+  19:'Unibet'
+  
 };
 function parse(q) {
   const arrHolder = [];
